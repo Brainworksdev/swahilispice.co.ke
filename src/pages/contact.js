@@ -63,6 +63,7 @@ function form() {
         ${icon('whatsapp', { size: 20 })}<span data-submit-label>${site.formEndpoint ? 'Send enquiry' : 'Send enquiry via WhatsApp'}</span>
       </button>
       <p class="enquiry__small">${site.formEndpoint ? 'We’ll respond as soon as possible.' : 'Your details open in WhatsApp, ready to send to our team.'} Prefer to talk? Call <a href="${telHref()}">${site.phone.display}</a>.</p>
+      <p class="enquiry__small">By sending an enquiry you agree to our <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms &amp; Conditions</a>.</p>
     </div>
     <p class="form-status" role="status" aria-live="polite" data-form-status></p>
     <noscript><p class="form-status form-status--error">This form needs JavaScript. Please call or WhatsApp us on <a href="${telHref()}">${site.phone.display}</a>.</p></noscript>
@@ -93,7 +94,7 @@ export default {
   id: 'contact',
   file: 'contact.html',
   title: 'Contact & Reservations',
-  description: 'Book your stay at Swahili Spice Hostel. Call or WhatsApp 0794149805, or send a booking enquiry with your dates and number of guests.',
+  description: 'Book your stay at Swahili Spice Hostel, Mombasa. Call or WhatsApp 0794149805, or send a booking enquiry with your dates and number of guests.',
   priority: '0.9',
   body: () => `
 ${pageHero({ sw: 'Wasiliana nasi', en: 'Contact & reservations', title: 'Let’s plan <em>your stay.</em>', intro: `The fastest way to book is to call or WhatsApp us on ${site.phone.display}. Or send your dates below and we’ll get back to you.` })}

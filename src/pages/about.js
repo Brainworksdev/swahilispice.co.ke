@@ -24,10 +24,10 @@ export default {
   id: 'about',
   file: 'about.html',
   title: 'About Us',
-  description: 'Get to know Swahili Spice Hostel — warm Swahili hospitality, clean and comfortable rooms and a relaxed, secure place to stay. Call 0794149805.',
+  description: 'Swahili Spice Hostel has welcomed guests in Mombasa since 2019 — warm Swahili hospitality and clean, comfortable, affordable rooms.',
   priority: '0.8',
   body: () => `
-${pageHero({ sw: 'Kuhusu sisi', en: 'About us', title: 'Hospitality is <em>at the heart</em> of everything we do.', intro: 'Swahili Spice Hostel brings the warmth of coastal hospitality to comfortable, affordable accommodation.', image: 'door' })}
+${pageHero({ sw: 'Kuhusu sisi', en: 'About us', title: 'Hospitality is <em>at the heart</em> of everything we do.', intro: 'Welcoming guests in Mombasa since 2019 — with the warmth of Swahili hospitality and the comfort of a well-kept, affordable stay.', image: 'oldTown' })}
 
 <section class="section">
   <div class="container about-intro">
@@ -35,8 +35,8 @@ ${pageHero({ sw: 'Kuhusu sisi', en: 'About us', title: 'Hospitality is <em>at th
       ${sectionHead({ sw: 'Falsafa yetu', en: 'Our philosophy', title: 'Simple comforts, <em>sincerely offered.</em>' })}
     </div>
     <div class="prose" data-reveal>
-      <p class="lead">On the Swahili coast, hospitality is a way of life. A guest is greeted warmly, offered something to drink and made to feel at ease. That is the spirit we bring to Swahili Spice Hostel.</p>
-      <p>We believe a good stay comes down to the essentials done well: a clean, comfortable room; a calm and secure place to come back to; and people who are glad to help. Whether you are travelling on a budget, visiting for work or exploring the region, we want you to leave rested — and looking forward to coming back.</p>
+      <p class="lead">On the Swahili coast, hospitality is a way of life. A guest is greeted warmly, offered something to drink and made to feel at ease. That is the spirit we bring to Swahili Spice Hostel in Mombasa.</p>
+      <p>We believe a good stay comes down to the essentials done well: a clean, comfortable room; a calm and secure place to come back to; and people who are glad to help. Whether you are travelling on a budget, visiting for work or exploring Mombasa and the Kenyan coast, we want you to leave rested — and looking forward to coming back.</p>
     </div>
   </div>
 </section>
@@ -57,9 +57,12 @@ ${pageHero({ sw: 'Kuhusu sisi', en: 'About us', title: 'Hospitality is <em>at th
 
 <section class="section">
   <div class="container about-story">
-    <div class="about-story__media" data-reveal>${figure('coast', { sizes: '(min-width: 900px) 45vw, 90vw' })}</div>
+    <div class="about-story__media" data-reveal>
+      ${figure('passage', { sizes: '(min-width: 900px) 45vw, 90vw' })}
+      ${site.foundingYear ? `<div class="about-story__since" aria-hidden="true"><span>Since</span><strong>${site.foundingYear}</strong><small>${esc(site.address ? site.address.locality : '')}</small></div>` : ''}
+    </div>
     <div>
-      ${sectionHead({ sw: 'Historia', en: 'Our story', title: 'The Swahili Spice story' })}
+      ${sectionHead({ sw: 'Historia', en: 'Our story', title: site.foundingYear ? `Welcoming guests <em>since ${site.foundingYear}</em>` : 'The Swahili Spice story' })}
       <div class="prose" data-reveal>${story()}</div>
     </div>
   </div>

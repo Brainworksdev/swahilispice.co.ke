@@ -16,11 +16,12 @@ import facilities from './src/pages/facilities.js';
 import gallery from './src/pages/gallery.js';
 import contact from './src/pages/contact.js';
 import notFound from './src/pages/not-found.js';
+import { privacy, terms, credits } from './src/pages/legal.js';
 
 const ROOT = path.dirname(fileURLToPath(import.meta.url));
 const SRC = path.join(ROOT, 'src');
 const DIST = path.join(ROOT, 'dist');
-const pages = [home, about, accommodation, facilities, gallery, contact, notFound];
+const pages = [home, about, accommodation, facilities, gallery, contact, privacy, terms, credits, notFound];
 
 // 1. Clean output and copy static assets
 rmSync(DIST, { recursive: true, force: true });
@@ -81,8 +82,8 @@ if (!site.testimonials.length) todo.push('Genuine guest testimonials (section sh
 if (!site.social.length) todo.push('Social media accounts (optional)');
 site.rooms.filter((r) => !r.confirmed).forEach((r) => todo.push(`Room: "${r.name}" — name, description, occupancy, beds, rate, features`));
 site.facilities.filter((f) => !f.confirmed).forEach((f) => todo.push(`Facility: ${f.name}`));
-const ph = Object.entries(site.images).filter(([, v]) => v.placeholder).map(([k]) => k);
-if (ph.length) todo.push(`Photography to replace placeholder illustrations: ${ph.join(', ')}`);
+const ph = Object.entries(site.images).filter(([, v]) => v.illustrative).map(([k]) => k);
+if (ph.length) todo.push(`Genuine hostel photos to replace illustrative stock images (${ph.length}): ${ph.join(', ')}`);
 if (todo.length) {
   console.log(`\n⚠ Content awaiting confirmation (${todo.length}) — edit src/data/site.js:`);
   todo.forEach((t) => console.log(`   • ${t}`));

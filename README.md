@@ -25,13 +25,12 @@ Almost every business detail lives in **`src/data/site.js`**: contact details, a
 
 ### Photography
 
-The images are currently placeholder illustrations (`src/assets/img/art/`). To use real photos:
+The site currently uses **illustrative stock photography** of Kenya's Swahili coast and East African hospitality. The photos come from Pexels and are licensed for commercial use. They're stored in `src/assets/images/` as responsive WebP files and labelled **"Illustrative photo"** on the site. They are **not** photos of the hostel. Every image is listed with its photographer and licence in [IMAGE-CREDITS.md](IMAGE-CREDITS.md) and on the `/credits.html` page.
 
-1. Export JPEG or WebP files at about 2000px on the long edge, ideally under 350 KB each.
-2. Put them in `src/assets/img/photos/`.
-3. In `site.images`, update the entry, for example:
-   `room1: { src: 'assets/img/photos/room-1.jpg', width: 2000, height: 1500, alt: 'Twin room with garden view', placeholder: false }`
-4. Optional: add a `srcset` string for smaller sizes, e.g. `'assets/img/photos/room-1-800.jpg 800w, assets/img/photos/room-1.jpg 2000w'`.
+- To change the stock selection, edit the `PHOTOS` list in `scripts/fetch-photos.js` and run `node scripts/fetch-photos.js`. It downloads optimised WebP files at two sizes and regenerates the credits register.
+- To use a **genuine hostel photo**, export it as WebP at 640px and 1280px wide (e.g. `hostel-room-1-640.webp` and `hostel-room-1-1280.webp`, ideally under 250 KB each). Put both files in `src/assets/images/`, then change the matching entry in `site.images`:
+  `room1: own('hostel-room-1', 1280, 960, 'Twin room with two single beds'),`
+  Genuine photos aren't labelled "Illustrative photo".
 
 ### Booking enquiry form
 
@@ -47,11 +46,13 @@ The site never tells a guest their reservation is confirmed. It always says the 
 src/
   data/site.js          ← all business content
   components/           ← layout (head/header/footer), UI components, icons
-  pages/                ← one module per page
-  assets/css|js|img     ← styles, behaviour, images
+  pages/                ← one module per page (legal.js = privacy, terms, photo credits)
+  assets/css|js         ← styles and behaviour
+  assets/images/        ← photography (WebP) + credits.json licence data
+  assets/img/           ← logo, favicons, Open Graph image
   static/               ← copied to the site root (favicon.ico, .htaccess)
 scripts/
-  art.js                ← regenerates placeholder illustrations
+  fetch-photos.js       ← downloads stock photos as WebP and writes IMAGE-CREDITS.md
   brand-assets.js       ← regenerates favicon, app icons, logo.png, og-image.png (needs Chrome/Edge)
 build.js                ← renders pages, sitemap.xml, robots.txt, site.webmanifest
 serve.js                ← local preview server (development only)

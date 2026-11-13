@@ -43,10 +43,10 @@ export default {
   id: 'accommodation',
   file: 'accommodation.html',
   title: 'Accommodation',
-  description: 'Explore accommodation at Swahili Spice Hostel. Enquire for room availability and current rates by phone or WhatsApp on 0794149805.',
+  description: 'Affordable accommodation in Mombasa at Swahili Spice Hostel. Enquire for room availability and current rates by phone or WhatsApp on 0794149805.',
   priority: '0.9',
   body: () => `
-${pageHero({ sw: 'Malazi', en: 'Accommodation', title: 'Rooms for a <em>restful</em> stay.', intro: 'Clean, comfortable and affordable — send us your dates and we’ll confirm availability and current rates.', image: 'room2' })}
+${pageHero({ sw: 'Malazi', en: 'Accommodation', title: 'Rooms for a <em>restful</em> stay.', intro: 'Clean, comfortable and affordable — send us your dates and we’ll confirm availability and current rates.', image: 'accHero' })}
 
 ${showTbc(false) && site.rooms.some((r) => !r.confirmed)
   ? `<div class="container notice-wrap">${placeholderBlock({ iconName: 'bed', title: 'Room categories and rates are being finalised', text: 'The room names, descriptions, occupancy and prices below are placeholders and will be updated with confirmed details. For accurate availability and rates today, please contact us directly.', actions: waButton({ label: 'Ask for current rates', message: 'Hello Swahili Spice Hostel, could you please share your current room types and rates? Thank you.' }) })}</div>`

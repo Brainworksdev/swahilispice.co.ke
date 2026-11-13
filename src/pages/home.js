@@ -18,9 +18,9 @@ function hero() {
     <div class="hero__shade" aria-hidden="true"></div>
     <div class="container hero__inner">
       <div class="hero__content">
-        ${eyebrow('Karibu', 'Swahili Spice Hostel')}
+        ${eyebrow('Karibu', 'Swahili Spice Hostel · Mombasa')}
         <h1 class="hero__title">Warm Swahili hospitality, <em>a restful place to stay.</em></h1>
-        <p class="hero__lead">Comfortable, affordable accommodation in clean and welcoming surroundings — with a team that makes every guest feel at home.</p>
+        <p class="hero__lead">Comfortable, affordable accommodation in Mombasa — clean, welcoming and looked after by a team that makes every guest feel at home.</p>
         <div class="hero__actions">
           ${button({ href: 'contact.html#enquiry', label: 'Book your stay', variant: 'primary', iconName: 'calendar' })}
           ${button({ href: 'contact.html', label: 'Contact us', variant: 'ghost-light' })}
@@ -31,7 +31,7 @@ function hero() {
         </a>
       </div>
     </div>
-    ${site.images.hero.placeholder && site.showPlaceholderLabels ? '<span class="ph-tag ph-tag--hero">Placeholder illustration — replace with hostel photography</span>' : ''}
+    ${site.images.hero.illustrative ? '<span class="ph-tag ph-tag--hero">Illustrative photo — Mombasa coast</span>' : ''}
   </section>`;
 }
 
@@ -45,7 +45,7 @@ function welcome() {
       <div class="welcome__text">
         ${sectionHead({ sw: 'Karibu', en: 'Welcome', title: 'A comfortable base, <em>made warmer by the people.</em>' })}
         <div data-reveal>
-          <p class="lead">Swahili Spice Hostel offers affordable, well-kept accommodation for travellers who want comfort without the fuss — and a welcome that feels personal.</p>
+          <p class="lead">Since 2019, Swahili Spice Hostel has offered affordable, well-kept accommodation in Mombasa for travellers who want comfort without the fuss — and a welcome that feels personal.</p>
           <p>Whether you are passing through or settling in for a longer stay, our aim is simple: clean rooms, a secure and relaxed atmosphere, and friendly help whenever you need it. Get in touch and we’ll help you plan your stay.</p>
           <div class="welcome__actions">
             ${button({ href: 'about.html', label: 'About Swahili Spice', variant: 'outline' })}
@@ -99,7 +99,7 @@ function experienceSection() {
 }
 
 function galleryPreview() {
-  const items = ['room1', 'door', 'lounge', 'dining', 'coast'];
+  const items = ['oldTown', 'lamu', 'dining', 'kwale', 'dish'];
   return `<section class="section gallery-preview">
     <div class="container">
       <div class="split-head">
@@ -121,11 +121,12 @@ export function locationSection() {
   return `<section class="section location" id="location">
     <div class="container location__grid">
       <div class="location__text">
-        ${sectionHead({ sw: 'Mahali', en: 'Location', title: 'Finding us' })}
+        ${sectionHead({ sw: 'Mahali', en: 'Location', title: site.address ? `Find us in <em>${esc(site.address.locality)}</em>` : 'Finding us' })}
         <div data-reveal>
           ${address}
           ${site.directionsNote ? `<p>${esc(site.directionsNote)}</p>` : ''}
           ${!site.address ? placeholderBlock({ iconName: 'pin', title: 'Address and map coming soon', text: `Our full address and map will be published here shortly. In the meantime, call or WhatsApp ${site.phone.display} and we’ll share directions.` }) : ''}
+          ${site.address && !site.mapEmbedUrl ? `<p class="location__note">Call or WhatsApp us on <a href="${telHref()}">${site.phone.display}</a> and we’ll send you directions or a map pin to the hostel.</p>` : ''}
           <div class="location__actions">
             ${waButton({ label: 'Get directions on WhatsApp', message: 'Hello Swahili Spice Hostel, could you please share directions to the hostel? Thank you.' })}
             ${callButton()}
@@ -144,7 +145,7 @@ export function locationSection() {
                 <circle cx="300" cy="170" r="54" fill="#C66A43" opacity=".14"/>
                 <path d="M300 205s-30-26-30-50a30 30 0 0 1 60 0c0 24-30 50-30 50z" fill="#C66A43"/><circle cx="300" cy="155" r="10" fill="#FAF8F3"/>
               </svg>
-              <span class="map-placeholder__label">Map to be added once the location is confirmed</span>
+              <span class="map-placeholder__label">${site.address ? `${esc([site.address.locality, site.address.region].filter(Boolean).join(", "))} — map pin coming soon` : 'Map to be added once the location is confirmed'}</span>
             </div>`}
       </div>
     </div>
@@ -179,8 +180,8 @@ function testimonials() {
 export default {
   id: 'home',
   file: 'index.html',
-  title: 'Swahili Spice Hostel | Comfortable, Affordable Accommodation',
-  description: 'Swahili Spice Hostel — comfortable, affordable accommodation with warm Swahili hospitality. Book your stay by phone or WhatsApp on 0794149805.',
+  title: 'Swahili Spice Hostel Mombasa | Comfortable, Affordable Accommodation',
+  description: 'Swahili Spice Hostel in Mombasa — comfortable, affordable accommodation with warm Swahili hospitality since 2019. Book on 0794149805.',
   preload: site.images.hero.src,
   priority: '1.0',
   body: () => [hero(), welcome(), rooms(), facilities(), experienceSection(), galleryPreview(), locationSection(), testimonials(), ctaBand()].join('\n'),

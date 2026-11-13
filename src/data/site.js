@@ -16,6 +16,9 @@
  *  The build prints a checklist of every unconfirmed item.
  * ---------------------------------------------------------------------------
  */
+import { readFileSync } from 'node:fs';
+
+const credits = JSON.parse(readFileSync(new URL('../assets/images/credits.json', import.meta.url), 'utf8'));
 
 const site = {
   name: 'Swahili Spice Hostel',
@@ -40,7 +43,9 @@ const site = {
 
   // Not yet provided by the business — leave null until confirmed.
   email: null,
-  address: null, // e.g. { street: '', locality: '', region: '', postalCode: '', country: 'KE' }
+  // Confirmed: Mombasa. Add the street / building name when available.
+  address: { street: null, locality: 'Mombasa', region: null, postalCode: null, country: 'KE' },
+  foundingYear: 2019, // confirmed
   directionsNote: null, // e.g. 'Five minutes' walk from …'
   mapEmbedUrl: null, // Google Maps "Embed a map" iframe src
   mapLinkUrl: null, // Google Maps share link
@@ -57,21 +62,30 @@ const site = {
 
   // -------------------------------------------------------------------------
   //  Images
-  //  Placeholder illustrations are used until real photography is supplied.
-  //  To use a photo: put it in src/assets/img/photos/, then set
-  //  { src: 'assets/img/photos/room-1.jpg', width, height, placeholder: false }.
-  //  Recommended: JPEG/WebP, 2000px on the long edge, under 350 KB.
+  //  Currently ILLUSTRATIVE stock photography (Pexels, see IMAGE-CREDITS.md),
+  //  labelled "Illustrative photo" on the site. They do not show the hostel.
+  //
+  //  To use a genuine hostel photo instead, save WebP files to
+  //  src/assets/images/ (e.g. hostel-room-1-640.webp and -1280.webp) and set:
+  //    room1: own('hostel-room-1', 1280, 960, 'Describe the photo'),
   // -------------------------------------------------------------------------
   images: {
-    hero: { src: 'assets/img/art/hero.svg', width: 1600, height: 1000, alt: 'Illustration of a Swahili arch opening onto the ocean at dusk', placeholder: true },
-    welcome: { src: 'assets/img/art/courtyard.svg', width: 1000, height: 1250, alt: 'Illustration of a calm courtyard with a carved doorway', placeholder: true },
-    room1: { src: 'assets/img/art/room-1.svg', width: 1200, height: 900, alt: 'Illustration of a bright guest room', placeholder: true },
-    room2: { src: 'assets/img/art/room-2.svg', width: 1200, height: 900, alt: 'Illustration of a guest room with arched window', placeholder: true },
-    room3: { src: 'assets/img/art/room-3.svg', width: 1200, height: 900, alt: 'Illustration of a guest room with bunk beds', placeholder: true },
-    lounge: { src: 'assets/img/art/lounge.svg', width: 1200, height: 900, alt: 'Illustration of a shared lounge', placeholder: true },
-    dining: { src: 'assets/img/art/dining.svg', width: 1200, height: 900, alt: 'Illustration of a dining table set with tea', placeholder: true },
-    coast: { src: 'assets/img/art/coast.svg', width: 1200, height: 900, alt: 'Illustration of a dhow sailing on the coast', placeholder: true },
-    door: { src: 'assets/img/art/door.svg', width: 900, height: 1200, alt: 'Illustration of a carved Swahili door', placeholder: true },
+    hero: stock('mombasa-dhow-sunrise'),
+    welcome: stock('swahili-carved-door'),
+    room1: stock('bedroom-mosquito-net'),
+    room2: stock('twin-bedroom-african-print'),
+    room3: stock('twin-bedroom-mosquito-nets'),
+    accHero: stock('bedroom-african-decor'),
+    lounge: stock('swahili-dining-room'),
+    facHero: stock('arched-lounge'),
+    dining: stock('chai-tea'),
+    dish: stock('kenyan-dish'),
+    entrance: stock('swahili-inlaid-entrance'),
+    oldTown: stock('mombasa-old-town'),
+    lamu: stock('lamu-alleyway'),
+    passage: stock('stone-town-passage'),
+    coast: stock('watamu-beach'),
+    kwale: stock('kwale-beachfront'),
   },
 
   // -------------------------------------------------------------------------
@@ -135,23 +149,58 @@ const site = {
   // -------------------------------------------------------------------------
   testimonials: [],
 
-  // About page story — awaiting details from the business.
-  story: null, // e.g. ['Paragraph one…', 'Paragraph two…']
+  // About page story — based on confirmed facts: Mombasa, opened 2019.
+  story: [
+    'Swahili Spice Hostel opened its doors in Mombasa in 2019 with a simple idea: that every traveller deserves a clean, comfortable and affordable place to stay — and a welcome that feels genuine.',
+    'Our name brings together two things we care about. “Swahili” speaks to the tradition of ukarimu — the generous, unhurried hospitality the Swahili coast is known for. “Spice” is the warmth and character we add to every stay, so it feels like more than just a room for the night.',
+    'Mombasa has welcomed travellers for centuries — traders, sailors and visitors drawn by its harbour, its Old Town and the Indian Ocean. We are proud to carry that tradition forward. Our guests include people passing through, visiting family, working in the city or exploring the coast, and since 2019 our aim has stayed the same for all of them: rest well, feel safe and be looked after.',
+    'We are proud to be part of the Mombasa community, and we look forward to welcoming you.',
+  ],
 
   // -------------------------------------------------------------------------
-  //  Gallery — `category` drives the filter buttons.
+  //  Gallery — `category` drives the filter buttons. Photos are illustrative.
   // -------------------------------------------------------------------------
   gallery: [
-    { image: 'hero', category: 'Surroundings', caption: 'Evening on the coast' },
-    { image: 'room1', category: 'Rooms', caption: 'Guest room' },
-    { image: 'lounge', category: 'Shared spaces', caption: 'Shared lounge' },
-    { image: 'door', category: 'Surroundings', caption: 'Carved doorway' },
-    { image: 'room2', category: 'Rooms', caption: 'Guest room' },
-    { image: 'dining', category: 'Shared spaces', caption: 'Dining area' },
-    { image: 'welcome', category: 'Shared spaces', caption: 'Courtyard' },
-    { image: 'room3', category: 'Rooms', caption: 'Guest room' },
-    { image: 'coast', category: 'Surroundings', caption: 'Dhow at sea' },
+    { image: 'hero', category: 'Swahili coast', caption: 'Dhow at sunrise, Mombasa' },
+    { image: 'room1', category: 'Rooms', caption: 'Guest room style' },
+    { image: 'lounge', category: 'Shared spaces', caption: 'Dining & shared space' },
+    { image: 'welcome', category: 'Swahili coast', caption: 'Carved Swahili door' },
+    { image: 'room2', category: 'Rooms', caption: 'Twin room style' },
+    { image: 'oldTown', category: 'Swahili coast', caption: 'Old Town, Mombasa' },
+    { image: 'dining', category: 'Food & drink', caption: 'Spiced chai' },
+    { image: 'room3', category: 'Rooms', caption: 'Twin room with nets' },
+    { image: 'lamu', category: 'Swahili coast', caption: 'Lamu alleyway' },
+    { image: 'dish', category: 'Food & drink', caption: 'Kenyan cuisine' },
+    { image: 'facHero', category: 'Shared spaces', caption: 'Lounge style' },
+    { image: 'coast', category: 'Swahili coast', caption: 'Watamu beach' },
   ],
 };
+
+/* ---- image helpers (photo metadata comes from scripts/fetch-photos.js) ---- */
+function stock(name) {
+  const c = credits[name];
+  if (!c) throw new Error(`Photo "${name}" missing from src/assets/images/credits.json — run node scripts/fetch-photos.js`);
+  const sizes = Object.keys(c.files).map(Number).sort((a, b) => a - b);
+  const large = c.files[sizes[sizes.length - 1]];
+  return {
+    src: large.file,
+    srcset: sizes.map((w) => `${c.files[w].file} ${w}w`).join(', '),
+    width: sizes[sizes.length - 1],
+    height: large.height,
+    alt: c.alt,
+    illustrative: true, // stock photo — not the actual hostel
+    credit: { photographer: c.photographer, url: c.pageUrl },
+  };
+}
+
+// For genuine hostel photos saved as <name>-640.webp and <name>-1280.webp.
+// eslint-disable-next-line no-unused-vars
+function own(name, width, height, alt) {
+  return {
+    src: `assets/images/${name}-1280.webp`,
+    srcset: `assets/images/${name}-640.webp 640w, assets/images/${name}-1280.webp 1280w`,
+    width, height, alt, illustrative: false,
+  };
+}
 
 export default site;

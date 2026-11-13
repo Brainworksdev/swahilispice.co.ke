@@ -22,7 +22,7 @@ function structuredData() {
     telephone: site.phone.tel,
     image: `${site.url}/assets/img/og-image.png`,
     logo: `${site.url}/assets/img/logo.png`,
-    description: 'Comfortable, affordable accommodation with warm Swahili hospitality. Enquire by phone or WhatsApp on 0794149805.',
+    description: 'Comfortable, affordable accommodation in Mombasa, with warm Swahili hospitality since 2019. Enquire by phone or WhatsApp on 0794149805.',
     contactPoint: {
       '@type': 'ContactPoint',
       telephone: site.phone.tel,
@@ -34,7 +34,11 @@ function structuredData() {
   if (site.priceRange) data.priceRange = site.priceRange;
   if (site.checkInTime) data.checkinTime = site.checkInTime;
   if (site.checkOutTime) data.checkoutTime = site.checkOutTime;
-  if (site.address) data.address = { '@type': 'PostalAddress', streetAddress: site.address.street, addressLocality: site.address.locality, addressRegion: site.address.region, postalCode: site.address.postalCode, addressCountry: site.address.country || 'KE' };
+  if (site.foundingYear) data.foundingDate = String(site.foundingYear);
+  if (site.address) {
+    const a = { '@type': 'PostalAddress', streetAddress: site.address.street, addressLocality: site.address.locality, addressRegion: site.address.region, postalCode: site.address.postalCode, addressCountry: site.address.country || 'KE' };
+    data.address = Object.fromEntries(Object.entries(a).filter(([, v]) => v));
+  }
   if (site.geo) data.geo = { '@type': 'GeoCoordinates', ...site.geo };
   if (site.mapLinkUrl) data.hasMap = site.mapLinkUrl;
   if (site.social.length) data.sameAs = site.social.map((s) => s.url);
@@ -155,8 +159,12 @@ function footer() {
     </div>
   </div>
   <div class="container site-footer__bottom">
-    <p>&copy; ${year} ${esc(site.name)}. All rights reserved.</p>
-    <p><a href="https://swahilispice.co.ke">swahilispice.co.ke</a></p>
+    <p>&copy; ${year} ${esc(site.name)}${site.address ? `, ${esc(site.address.locality)}` : ''}. All rights reserved.</p>
+    <ul class="site-footer__legal">
+      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="terms.html">Terms &amp; Conditions</a></li>
+      <li><a href="credits.html">Photo credits</a></li>
+    </ul>
   </div>
 </footer>
 <a class="wa-float" href="${waHref()}" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp">${icon('whatsapp', { size: 28 })}<span class="wa-float__label">Book on WhatsApp</span></a>`;

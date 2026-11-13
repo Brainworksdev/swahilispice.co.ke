@@ -66,9 +66,10 @@ writeFileSync(path.join(STATIC, 'favicon.ico'), Buffer.concat([header, png32]));
 writeFileSync(path.join(IMG, 'logo.png'), shoot('logo', `<div style="width:600px;height:600px;display:grid;place-items:center;background:#FAF8F3"><div style="display:grid;justify-items:center;gap:22px;color:#123B50">${mark('#123B50', '#C66A43').replace('width="40"', 'width="170"').replace('height="48"', 'height="204"')}<div style="font-family:Fraunces,serif;font-size:58px;line-height:1">Swahili Spice</div><div style="font-family:'DM Sans',sans-serif;font-weight:600;font-size:20px;letter-spacing:.5em;margin-right:-.5em">HOSTEL</div></div></div>`, 600, 600));
 
 // Open Graph image 1200×630
-const hero = readFileSync(path.join(IMG, 'art', 'hero.svg'), 'utf8');
+// Background: the (illustrative) hero photograph of a dhow off Mombasa.
+const heroPhoto = pathToFileURL(path.join(ROOT, 'src', 'assets', 'images', 'mombasa-dhow-sunrise-1920.webp')).href;
 const og = `<div style="position:relative;width:1200px;height:630px;overflow:hidden;background:#0B2836;font-family:'DM Sans',sans-serif">
-  <div style="position:absolute;inset:0;width:1200px;height:630px">${hero.replace('<svg ', '<svg style="width:1200px;height:630px" ')}</div>
+  <img src="${heroPhoto}" style="position:absolute;left:0;top:-330px;width:1620px;height:1080px;max-width:none">
   <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(11,40,54,.94) 0%,rgba(11,40,54,.75) 48%,rgba(11,40,54,.05) 80%)"></div>
   <div style="position:absolute;left:80px;top:0;bottom:0;display:flex;flex-direction:column;justify-content:center;color:#FAF8F3;width:620px">
     <div style="display:flex;align-items:center;gap:18px">${mark('#E8D8BE', '#C66A43').replace('width="40"', 'width="54"').replace('height="48"', 'height="64"')}<div><div style="font-family:Fraunces,serif;font-size:36px;line-height:1">Swahili Spice</div><div style="font-size:14px;font-weight:600;letter-spacing:.42em;margin-top:6px;opacity:.85">HOSTEL</div></div></div>

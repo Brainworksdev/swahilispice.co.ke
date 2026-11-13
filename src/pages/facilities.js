@@ -10,7 +10,7 @@ export default {
   description: 'Facilities and amenities at Swahili Spice Hostel. Contact us on 0794149805 by phone or WhatsApp to ask about anything you need for your stay.',
   priority: '0.8',
   body: () => `
-${pageHero({ sw: 'Huduma', en: 'Facilities & amenities', title: 'Everything you need, <em>nothing you don’t.</em>', intro: 'Practical comforts and relaxed shared spaces — so the only thing you need to think about is your plans for the day.', image: 'lounge' })}
+${pageHero({ sw: 'Huduma', en: 'Facilities & amenities', title: 'Everything you need, <em>nothing you don’t.</em>', intro: 'Practical comforts and relaxed shared spaces — so the only thing you need to think about is your plans for the day.', image: 'facHero' })}
 
 <section class="section">
   <div class="container">
@@ -38,7 +38,7 @@ ${pageHero({ sw: 'Huduma', en: 'Facilities & amenities', title: 'Everything you 
       </div>
     </article>
     <article class="feature-row">
-      <div class="feature-row__media" data-reveal>${figure('welcome', { className: 'media--arch', sizes: '(min-width: 900px) 45vw, 90vw' })}</div>
+      <div class="feature-row__media" data-reveal>${figure('entrance', { className: 'media--arch', sizes: '(min-width: 900px) 45vw, 90vw' })}</div>
       <div class="feature-row__text" data-reveal>
         <div class="feature-row__top">${tbc(byId('security').confirmed)}</div>
         <h2 class="feature-row__title">Rest easy, <em>feel at home</em></h2>
