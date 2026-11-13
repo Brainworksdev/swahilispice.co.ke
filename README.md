@@ -52,7 +52,8 @@ src/
   static/               ← copied to the site root (favicon.ico, .htaccess)
 scripts/
   fetch-photos.js       ← downloads stock photos as WebP and writes IMAGE-CREDITS.md
-  brand-assets.js       ← regenerates favicon, app icons, logo.png, og-image.png (needs Chrome/Edge)
+  brand-assets.js       ← regenerates favicon, app icons, logo.png (needs Chrome/Edge)
+  og-image.js           ← link-preview image for WhatsApp/Facebook/X (`npm run og`; re-run after changing rates)
 build.js                ← renders pages, sitemap.xml, robots.txt, site.webmanifest
 serve.js                ← local preview server (development only)
 ```
