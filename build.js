@@ -82,6 +82,10 @@ if (!site.testimonials.length) todo.push('Genuine guest testimonials (section sh
 if (!site.social.length) todo.push('Social media accounts (optional)');
 site.rooms.filter((r) => !r.confirmed).forEach((r) => todo.push(`Room: "${r.name}" — name, description, occupancy, beds, rate, features`));
 site.facilities.filter((f) => !f.confirmed).forEach((f) => todo.push(`Facility: ${f.name}`));
+// Sample content shown on the live site — must be verified with the client.
+(site.sampleFields || []).forEach((k) => todo.push(`SAMPLE value shown on site: ${k} = ${JSON.stringify(site[k])}`));
+site.rooms.filter((r) => r.sample).forEach((r) => todo.push(`SAMPLE room: "${r.name}" (${r.price}, ${r.occupancy}, ${r.beds})`));
+site.facilities.filter((f) => f.sample).forEach((f) => todo.push(`SAMPLE facility: ${f.name}`));
 const ph = Object.entries(site.images).filter(([, v]) => v.illustrative).map(([k]) => k);
 if (ph.length) todo.push(`Genuine hostel photos to replace illustrative stock images (${ph.length}): ${ph.join(', ')}`);
 if (todo.length) {

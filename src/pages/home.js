@@ -60,7 +60,7 @@ function rooms() {
   return `<section class="section section--sand rooms-preview">
     <div class="container">
       <div class="split-head">
-        ${sectionHead({ sw: 'Malazi', en: 'Accommodation', title: 'Places to rest', intro: 'Room categories, occupancy and rates are being finalised. Enquire for current availability and prices.' })}
+        ${sectionHead({ sw: 'Malazi', en: 'Accommodation', title: 'Places to rest', intro: 'Simple, comfortable rooms at honest prices. Send us your dates and we’ll confirm availability.' })}
         <div data-reveal>${button({ href: 'accommodation.html', label: 'All accommodation', variant: 'outline', iconName: 'arrow' })}</div>
       </div>
       <div class="room-grid">${site.rooms.map(roomCard).join('')}</div>

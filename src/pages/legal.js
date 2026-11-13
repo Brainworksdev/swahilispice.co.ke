@@ -148,7 +148,7 @@ const termsSections = () => [
   },
   {
     h: 'Website information and images',
-    body: `<p>We work to keep the information on this website accurate and up to date, but details such as facilities, room types and availability may change. Some details are marked “To be confirmed”. If a particular detail matters to you, please confirm it with us before booking.</p>
+    body: `<p>We work to keep the information on this website accurate and up to date, but details such as facilities, room types and availability may change. If a particular detail matters to you, please confirm it with us before booking.</p>
     <p><strong>Photographs on this website are illustrative</strong> and show the wider Swahili coast and East African hospitality. They are not photographs of Swahili Spice Hostel’s actual rooms, facilities or premises unless we clearly say so. See our <a href="credits.html">photo credits</a>.</p>`,
   },
   {

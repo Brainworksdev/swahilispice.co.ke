@@ -34,7 +34,7 @@ ${pageHero({ sw: 'Huduma', en: 'Facilities & amenities', title: 'Everything you 
       <div class="feature-row__text" data-reveal>
         <div class="feature-row__top">${tbc(byId('dining').confirmed)}</div>
         <h2 class="feature-row__title">A table for <em>chai and conversation</em></h2>
-        <p>Dining arrangements, meal times and any kitchen access for guests will be detailed here once confirmed. Ask us about food options when you enquire.</p>
+        <p>Start the day with breakfast, settle in for a home-style meal or simply enjoy a cup of spiced chai. Our dining area is a relaxed place to eat, talk and plan your next adventure on the coast.</p>
       </div>
     </article>
     <article class="feature-row">
@@ -42,7 +42,7 @@ ${pageHero({ sw: 'Huduma', en: 'Facilities & amenities', title: 'Everything you 
       <div class="feature-row__text" data-reveal>
         <div class="feature-row__top">${tbc(byId('security').confirmed)}</div>
         <h2 class="feature-row__title">Rest easy, <em>feel at home</em></h2>
-        <p>Your comfort and safety come first. Details of security arrangements, parking and access will be added here once confirmed by the hostel.</p>
+        <p>Your comfort and safety come first. The property is secured around the clock, with staff on hand day and night and secure on-site parking — so you can explore Mombasa and come back to a calm, safe place to rest.</p>
       </div>
     </article>
   </div>

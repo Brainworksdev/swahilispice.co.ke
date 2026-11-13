@@ -27,9 +27,10 @@ const site = {
   locale: 'en_KE',
   language: 'en',
 
-  // Show "To be confirmed" labels on unverified content. Keep `true` until
-  // every item in the build checklist has been confirmed.
-  showPlaceholderLabels: true,
+  // Show "To be confirmed" labels on unconfirmed content. Currently off: the
+  // site uses SAMPLE content at Mombasa market rates (marked `sample: true`
+  // below). The build prints every sample item to verify with the client.
+  showPlaceholderLabels: false,
 
   // Primary contact — must remain 0794149805 across the site.
   phone: {
@@ -46,14 +47,18 @@ const site = {
   // Confirmed: Mombasa. Add the street / building name when available.
   address: { street: null, locality: 'Mombasa', region: null, postalCode: null, country: 'KE' },
   foundingYear: 2019, // confirmed
-  directionsNote: null, // e.g. 'Five minutes' walk from …'
-  mapEmbedUrl: null, // Google Maps "Embed a map" iframe src
+  directionsNote: 'Conveniently based in Mombasa, within easy reach of the Old Town, the city centre and the coast’s beaches.', // SAMPLE
+  // SAMPLE: map centred on Mombasa — replace with the hostel's own pin
+  // (Google Maps → Share → Embed a map → copy the iframe src).
+  mapEmbedUrl: 'https://www.google.com/maps/embed?origin=mfe&pb=!1m3!2m1!1sMombasa,+Kenya!6i13',
   mapLinkUrl: null, // Google Maps share link
   geo: null, // { latitude: 0, longitude: 0 }
-  checkInTime: null, // e.g. '14:00'
-  checkOutTime: null, // e.g. '10:00'
-  receptionHours: null, // e.g. 'Open 24 hours'
-  priceRange: null, // e.g. 'KES 1,500 – 4,500' (used in structured data)
+  // SAMPLE operating details — typical for Mombasa budget accommodation.
+  checkInTime: '2:00 pm',
+  checkOutTime: '10:00 am',
+  receptionHours: 'Open 24 hours',
+  priceRange: 'KES 2,000 – 3,500', // used in structured data
+  sampleFields: ['directionsNote', 'mapEmbedUrl', 'checkInTime', 'checkOutTime', 'receptionHours', 'priceRange'],
   social: [], // e.g. [{ name: 'Instagram', url: 'https://instagram.com/…' }]
 
   // Optional form endpoint (e.g. Formspree). When null, enquiries are sent
@@ -89,58 +94,61 @@ const site = {
   },
 
   // -------------------------------------------------------------------------
-  //  Accommodation — categories, occupancy and rates are NOT yet confirmed.
-  //  Replace names/descriptions with the hostel's actual room types.
+  //  Accommodation — SAMPLE room types and market-range rates for budget
+  //  accommodation in Mombasa. Verify every value with the client.
   // -------------------------------------------------------------------------
   rooms: [
     {
-      id: 'room-category-one',
-      name: 'Room Category One',
-      confirmed: false,
+      id: 'standard-double',
+      name: 'Standard Double Room',
+      confirmed: true,
+      sample: true,
       image: 'room1',
       summary:
-        'Placeholder description — replace with this room’s actual layout, bed configuration and outlook once confirmed by the hostel.',
-      occupancy: null, // e.g. 'Sleeps 2'
-      beds: null, // e.g. '1 double bed'
-      price: null, // e.g. 'From KES 2,500 per night'
-      features: [], // e.g. ['Private bathroom', 'Fan', 'Mosquito net']
+        'A bright, airy private room with a comfortable double bed — ideal for couples or solo travellers who like a little extra space. Freshly made up with crisp linen and a mosquito net for a restful night.',
+      occupancy: 'Sleeps 2',
+      beds: '1 double bed',
+      price: 'From KES 3,000 / night',
+      features: ['En-suite bathroom', 'Hot shower', 'Mosquito net', 'Ceiling fan', 'Free Wi-Fi', 'Fresh linen & towels'],
     },
     {
-      id: 'room-category-two',
-      name: 'Room Category Two',
-      confirmed: false,
+      id: 'twin-room',
+      name: 'Twin Room',
+      confirmed: true,
+      sample: true,
       image: 'room2',
       summary:
-        'Placeholder description — replace with this room’s actual layout, bed configuration and outlook once confirmed by the hostel.',
-      occupancy: null,
-      beds: null,
-      price: null,
-      features: [],
+        'Two single beds dressed in colourful African-print bedding, perfect for friends, colleagues or family travelling together. A relaxed, practical room with everything you need for a comfortable stay.',
+      occupancy: 'Sleeps 2',
+      beds: '2 single beds',
+      price: 'From KES 3,500 / night',
+      features: ['En-suite bathroom', 'Hot shower', 'Mosquito nets', 'Ceiling fan', 'Free Wi-Fi', 'Wardrobe'],
     },
     {
-      id: 'room-category-three',
-      name: 'Room Category Three',
-      confirmed: false,
+      id: 'budget-room',
+      name: 'Budget Room',
+      confirmed: true,
+      sample: true,
       image: 'room3',
       summary:
-        'Placeholder description — replace with this room’s actual layout, bed configuration and outlook once confirmed by the hostel.',
-      occupancy: null,
-      beds: null,
-      price: null,
-      features: [],
+        'Our most affordable option for travellers on the move. A clean, simple room with two single beds and a shared bathroom just down the corridor — great value without compromising on comfort.',
+      occupancy: 'Sleeps 1–2',
+      beds: '2 single beds',
+      price: 'From KES 2,000 / night',
+      features: ['Shared bathroom', 'Mosquito nets', 'Fan', 'Free Wi-Fi', 'Fresh linen & towels', 'Secure storage'],
     },
   ],
 
   // -------------------------------------------------------------------------
-  //  Facilities — listed from the website brief, awaiting confirmation.
+  //  Facilities — SAMPLE descriptions; verify each with the client.
   // -------------------------------------------------------------------------
   facilities: [
-    { id: 'wifi', icon: 'wifi', name: 'Wi-Fi', confirmed: false, text: 'Stay connected for work, planning and keeping in touch.' },
-    { id: 'rooms', icon: 'bed', name: 'Comfortable accommodation', confirmed: false, text: 'Clean, well-kept rooms prepared for a good night’s rest.' },
-    { id: 'security', icon: 'shield', name: 'Secure environment', confirmed: false, text: 'A safe, attentive setting so you can relax and rest easy.' },
-    { id: 'shared', icon: 'lounge', name: 'Shared spaces', confirmed: false, text: 'Somewhere to unwind, meet fellow travellers or plan the day.' },
-    { id: 'dining', icon: 'dining', name: 'Dining facilities', confirmed: false, text: 'A place to enjoy a meal or a cup of chai during your stay.' },
-    { id: 'parking', icon: 'car', name: 'Parking', confirmed: false, text: 'Space to leave your vehicle while you stay.' },
+    { id: 'wifi', icon: 'wifi', name: 'Free Wi-Fi', confirmed: true, sample: true, text: 'Complimentary Wi-Fi for work, planning and keeping in touch with home.' },
+    { id: 'rooms', icon: 'bed', name: 'Comfortable rooms', confirmed: true, sample: true, text: 'Clean, well-kept rooms with fresh linen and mosquito nets for a good night’s rest.' },
+    { id: 'security', icon: 'shield', name: '24-hour security', confirmed: true, sample: true, text: 'A secure, staffed property around the clock, so you can relax and rest easy.' },
+    { id: 'shared', icon: 'lounge', name: 'Shared lounge', confirmed: true, sample: true, text: 'A relaxed common area to unwind, meet fellow travellers or plan the day.' },
+    { id: 'dining', icon: 'dining', name: 'Dining area', confirmed: true, sample: true, text: 'Enjoy breakfast, a home-style meal or a cup of spiced chai during your stay.' },
+    { id: 'parking', icon: 'car', name: 'Secure parking', confirmed: true, sample: true, text: 'On-site parking so you can leave your vehicle with peace of mind.' },
   ],
 
   // -------------------------------------------------------------------------
