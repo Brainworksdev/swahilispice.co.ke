@@ -14,7 +14,7 @@ const experience = [
 
 function hero() {
   return `<section class="hero">
-    <div class="hero__media">${figure('hero', { eager: true, tag: false })}</div>
+    <div class="hero__media">${figure('hero', { eager: true })}</div>
     <div class="hero__shade" aria-hidden="true"></div>
     <div class="container hero__inner">
       <div class="hero__content">
@@ -31,7 +31,6 @@ function hero() {
         </a>
       </div>
     </div>
-    ${site.images.hero.illustrative ? '<span class="ph-tag ph-tag--hero">Illustrative photo — Mombasa coast</span>' : ''}
   </section>`;
 }
 

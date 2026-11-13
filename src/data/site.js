@@ -63,7 +63,7 @@ const site = {
   // -------------------------------------------------------------------------
   //  Images
   //  Currently ILLUSTRATIVE stock photography (Pexels, see IMAGE-CREDITS.md),
-  //  labelled "Illustrative photo" on the site. They do not show the hostel.
+  //  They do not show the hostel.
   //
   //  To use a genuine hostel photo instead, save WebP files to
   //  src/assets/images/ (e.g. hostel-room-1-640.webp and -1280.webp) and set:

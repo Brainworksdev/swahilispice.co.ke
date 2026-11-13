@@ -25,12 +25,11 @@ Almost every business detail lives in **`src/data/site.js`**: contact details, a
 
 ### Photography
 
-The site currently uses **illustrative stock photography** of Kenya's Swahili coast and East African hospitality. The photos come from Pexels and are licensed for commercial use. They're stored in `src/assets/images/` as responsive WebP files and labelled **"Illustrative photo"** on the site. They are **not** photos of the hostel. Every image is listed with its photographer and licence in [IMAGE-CREDITS.md](IMAGE-CREDITS.md) and on the `/credits.html` page.
+The site currently uses **illustrative stock photography** of Kenya's Swahili coast and East African hospitality. The photos come from Pexels and are licensed for commercial use. They're stored in `src/assets/images/` as responsive WebP files. They are **not** photos of the hostel. Every image is listed with its photographer and licence in [IMAGE-CREDITS.md](IMAGE-CREDITS.md) and on the `/credits.html` page.
 
 - To change the stock selection, edit the `PHOTOS` list in `scripts/fetch-photos.js` and run `node scripts/fetch-photos.js`. It downloads optimised WebP files at two sizes and regenerates the credits register.
 - To use a **genuine hostel photo**, export it as WebP at 640px and 1280px wide (e.g. `hostel-room-1-640.webp` and `hostel-room-1-1280.webp`, ideally under 250 KB each). Put both files in `src/assets/images/`, then change the matching entry in `site.images`:
   `room1: own('hostel-room-1', 1280, 960, 'Twin room with two single beds'),`
-  Genuine photos aren't labelled "Illustrative photo".
 
 ### Booking enquiry form
 

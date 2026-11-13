@@ -185,7 +185,7 @@ function creditsSections() {
   return [
     {
       h: 'About our photographs',
-      body: `<p>The photographs on this website are <strong>illustrative images</strong> of Kenya’s Swahili coast and East African hospitality. They are <strong>not photographs of Swahili Spice Hostel’s actual rooms, facilities or premises</strong>, and they’re labelled “Illustrative photo” wherever they appear. We will replace them with photographs of the hostel in due course.</p>
+      body: `<p>The photographs on this website are <strong>illustrative images</strong> of Kenya’s Swahili coast and East African hospitality. They are <strong>not photographs of Swahili Spice Hostel’s actual rooms, facilities or premises</strong>. We will replace them with photographs of the hostel in due course.</p>
       <p>All images are used under the <a href="https://www.pexels.com/license/" target="_blank" rel="noopener">Pexels License</a>, which allows free commercial use. We credit each photographer below with thanks.</p>`,
     },
     { h: 'Photo credits', body: `<ul class="credits">${rows}</ul>` },

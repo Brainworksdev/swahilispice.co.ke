@@ -49,23 +49,15 @@ export function logo({ href = 'index.html', className = '' } = {}) {
 
 /* ---------- media ---------- */
 
-/**
- * Responsive image. `key` refers to site.images.
- * Illustrative stock photos get a discreet "Illustrative photo" tag so they
- * are never mistaken for the hostel's actual rooms or premises.
- */
-export const illustrativeTag = (img) =>
-  img.illustrative ? '<span class="ph-tag">Illustrative photo</span>' : '';
-
-export function figure(key, { className = '', eager = false, sizes = '100vw', caption = '', tag = true } = {}) {
+/** Responsive image. `key` refers to site.images. */
+export function figure(key, { className = '', eager = false, sizes = '100vw', caption = '' } = {}) {
   const img = site.images[key];
   if (!img) throw new Error(`Unknown image key: ${key}`);
   const srcset = img.srcset ? ` srcset="${img.srcset}" sizes="${sizes}"` : '';
   const loading = eager ? 'fetchpriority="high"' : 'loading="lazy"';
-  const ph = tag ? illustrativeTag(img) : '';
   return `<figure class="media ${className}">
     <img src="${img.src}"${srcset} width="${img.width}" height="${img.height}" alt="${esc(img.alt)}" ${loading} decoding="async">
-    ${ph}${caption ? `<figcaption>${esc(caption)}</figcaption>` : ''}
+    ${caption ? `<figcaption>${esc(caption)}</figcaption>` : ''}
   </figure>`;
 }
 

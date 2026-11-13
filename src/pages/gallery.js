@@ -20,7 +20,6 @@ function grid() {
           return `<li class="gallery-grid__item gallery-grid__item--${orient}" data-category="${esc(g.category)}" data-reveal style="--d:${(i % 3) * 60}ms">
             <button type="button" class="gallery-grid__btn" data-lightbox-src="${img.src}" data-lightbox-caption="${esc(g.caption)}" data-lightbox-alt="${esc(img.alt)}" data-lightbox-w="${img.width}" data-lightbox-h="${img.height}">
               <img src="${img.src}"${img.srcset ? ` srcset="${img.srcset}" sizes="(min-width: 900px) 33vw, 50vw"` : ''} width="${img.width}" height="${img.height}" alt="${esc(img.alt)}" loading="${i < 3 ? 'eager' : 'lazy'}" decoding="async">
-              ${img.illustrative ? '<span class="ph-tag">Illustrative photo</span>' : ''}
               <span class="gallery-grid__cap"><span>${esc(g.caption)}</span>${icon('expand', { size: 18 })}</span>
               <span class="visually-hidden">Open larger image</span>
             </button>
